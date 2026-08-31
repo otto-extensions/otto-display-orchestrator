@@ -12,6 +12,7 @@ export * from "./features/layout/commands/compileLayout.js";
 export * from "./features/objects/models/AnnouncementObject.js";
 export * from "./features/objects/models/HomeworkObject.js";
 export * from "./features/objects/models/WeatherObject.js";
+export * from "./features/objects/models/TimeObject.js";
 export * from "./features/objects/models/CalendarObject.js";
 export * from "./features/objects/services/DisplayObjectService.js";
 export * from "./features/objects/commands/registerDisplayObjects.js";

@@ -1,10 +1,11 @@
 import { commandService } from "../../../integration/csl-registration.js";
 import type { DisplayObject } from "../../layout/models/DisplayObject.js";
+import { DisplayObjectService } from "../services/DisplayObjectService.js";
 
 export const REGISTER_DISPLAY_OBJECTS_COMMAND_ID = "display.objects.register";
 
 export interface RegisterDisplayObjectsInput {
-  objects: DisplayObject[];
+  objects?: DisplayObject[];
 }
 
 export interface RegisterDisplayObjectsResult {
@@ -13,7 +14,9 @@ export interface RegisterDisplayObjectsResult {
 }
 
 export async function registerDisplayObjects(input: RegisterDisplayObjectsInput): Promise<RegisterDisplayObjectsResult> {
-  const ids = input.objects.map((object) => object.id);
+  const service = new DisplayObjectService();
+  const objects = input.objects ?? service.get();
+  const ids = objects.map((object) => object.id);
   return {
     registered: ids.length,
     ids

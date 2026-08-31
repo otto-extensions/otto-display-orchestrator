@@ -4,24 +4,26 @@ export interface WeatherObject extends DisplayObject {
   type: "WeatherTile";
   content: {
     temperature: number;
-    condition: string;
+    conditions: string;
+    icon: string;
     location: string;
   };
 }
 
 export function createWeatherObject(): WeatherObject {
   return {
-    id: "weather-tile-main",
+    id: "weather-object-main",
     type: "WeatherTile",
-    zoneId: "RightColumn",
-    title: "Weather",
+    zoneId: "Main",
+    title: "Weather Test Page",
     source: "otto-schedule",
-    priority: 60,
+    priority: 95,
     enabled: true,
-    variant: "compact",
+    variant: "current",
     content: {
       temperature: 72,
-      condition: "Sunny",
+      conditions: "Partly Cloudy",
+      icon: "partly-cloudy",
       location: "Campus"
     }
   };

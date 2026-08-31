@@ -2,6 +2,7 @@ import type { DisplayObject } from "../../layout/models/DisplayObject.js";
 import { createAnnouncementObject } from "../models/AnnouncementObject.js";
 import { createCalendarObject } from "../models/CalendarObject.js";
 import { createHomeworkObject } from "../models/HomeworkObject.js";
+import { createTimeObject } from "../models/TimeObject.js";
 import { createWeatherObject } from "../models/WeatherObject.js";
 
 export interface DisplayObjectRegistry {
@@ -13,6 +14,7 @@ export class DisplayObjectService implements DisplayObjectRegistry {
     createAnnouncementObject(),
     createHomeworkObject(),
     createWeatherObject(),
+    createTimeObject(),
     createCalendarObject()
   ];
 
