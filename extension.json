@@ -8,11 +8,13 @@
   "entrypoints": {
     "core": "src/integration/csl-registration.ts"
   },
+  "requiredExtensions": ["file"],
   "capabilities": [
     "display",
     "layout",
     "orchestration",
     "phase",
+    "settings",
     "content-generation",
     "design-system-integration",
     "module-data-adaptation"
