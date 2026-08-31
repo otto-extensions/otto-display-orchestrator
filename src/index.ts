@@ -18,6 +18,7 @@ export * from "./features/objects/services/DisplayObjectService.js";
 export * from "./features/objects/commands/registerDisplayObjects.js";
 
 export * from "./features/settings/models/OrchestratorSettings.js";
+export * from "./features/settings/models/PageSettings.js";
 export * from "./features/settings/services/OrchestratorSettingsService.js";
 export * from "./features/settings/commands/registerSettingsCommands.js";
 
