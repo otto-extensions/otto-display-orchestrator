@@ -1,0 +1,217 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-08-31T00:00:00.000Z",
+  "role": "student",
+  "phase": "normal",
+  "zones": [
+    {
+      "id": "TopBar",
+      "name": "Top Bar",
+      "kind": "header",
+      "priority": 100,
+      "visible": true,
+      "order": 1,
+      "allowedObjectTypes": ["Clock", "AnnouncementList", "WeatherTile"],
+      "minWidth": 0,
+      "maxWidth": 100
+    },
+    {
+      "id": "LeftColumn",
+      "name": "Left Column",
+      "kind": "sidebar",
+      "priority": 90,
+      "visible": true,
+      "order": 2,
+      "allowedObjectTypes": ["HomeworkPanel", "CalendarGrid", "AnnouncementList"],
+      "minWidth": 25,
+      "maxWidth": 35
+    },
+    {
+      "id": "RightColumn",
+      "name": "Right Column",
+      "kind": "sidebar",
+      "priority": 85,
+      "visible": true,
+      "order": 3,
+      "allowedObjectTypes": ["WeatherTile", "CalendarGrid"],
+      "minWidth": 25,
+      "maxWidth": 35
+    },
+    {
+      "id": "Footer",
+      "name": "Footer",
+      "kind": "footer",
+      "priority": 70,
+      "visible": true,
+      "order": 4,
+      "allowedObjectTypes": ["AnnouncementList", "CalendarGrid"],
+      "minWidth": 0,
+      "maxWidth": 100
+    },
+    {
+      "id": "FullscreenOverlay",
+      "name": "Fullscreen Overlay",
+      "kind": "overlay",
+      "priority": 120,
+      "visible": false,
+      "order": 5,
+      "allowedObjectTypes": ["AnnouncementList", "WeatherTile"],
+      "minWidth": 0,
+      "maxWidth": 100
+    }
+  ],
+  "objects": [
+    {
+      "id": "announcement-list-main",
+      "type": "AnnouncementList",
+      "zoneId": "TopBar",
+      "title": "Announcements",
+      "source": "otto-schedule",
+      "priority": 70,
+      "enabled": true,
+      "variant": "default",
+      "content": {
+        "items": [
+          {
+            "id": "a1",
+            "text": "Welcome to campus.",
+            "priority": "normal"
+          }
+        ],
+        "maxItems": 4
+      }
+    },
+    {
+      "id": "homework-panel-main",
+      "type": "HomeworkPanel",
+      "zoneId": "LeftColumn",
+      "title": "Homework",
+      "source": "otto-assignments",
+      "priority": 80,
+      "enabled": true,
+      "variant": "emphasis",
+      "content": {
+        "assignments": [
+          {
+            "id": "h1",
+            "title": "Read chapter 7",
+            "due": "Today",
+            "subject": "English"
+          }
+        ],
+        "urgentCount": 1
+      }
+    },
+    {
+      "id": "weather-tile-main",
+      "type": "WeatherTile",
+      "zoneId": "RightColumn",
+      "title": "Weather",
+      "source": "otto-schedule",
+      "priority": 60,
+      "enabled": true,
+      "variant": "compact",
+      "content": {
+        "temperature": 72,
+        "condition": "Sunny",
+        "location": "Campus"
+      }
+    },
+    {
+      "id": "calendar-grid-main",
+      "type": "CalendarGrid",
+      "zoneId": "Footer",
+      "title": "Calendar",
+      "source": "otto-calendar",
+      "priority": 55,
+      "enabled": true,
+      "variant": "default",
+      "content": {
+        "events": [
+          {
+            "id": "evt-1",
+            "title": "Assembly",
+            "start": "09:30"
+          }
+        ],
+        "dayLabel": "Today"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "r-1",
+      "name": "Morning schedule",
+      "type": "time-based",
+      "scope": "time",
+      "enabled": true,
+      "priority": 100,
+      "zoneId": "TopBar",
+      "objectType": "AnnouncementList",
+      "conditions": [
+        {
+          "field": "time",
+          "operator": "gt",
+          "value": "07:00"
+        }
+      ],
+      "fallback": "default"
+    },
+    {
+      "id": "r-2",
+      "name": "Assembly phase",
+      "type": "phase-based",
+      "scope": "phase",
+      "enabled": true,
+      "priority": 200,
+      "zoneId": "FullscreenOverlay",
+      "objectType": "AnnouncementList",
+      "conditions": [
+        {
+          "field": "phase",
+          "operator": "equals",
+          "value": "assembly"
+        }
+      ],
+      "fallback": "normal"
+    }
+  ],
+  "appearance": {
+    "tokens": {
+      "colorBrand": "#0b5fff",
+      "colorSurface": "#101828",
+      "colorPanel": "#1f2937",
+      "colorAccent": "#fbbf24",
+      "colorText": "#f9fafb",
+      "colorMuted": "#cbd5e1"
+    },
+    "spacing": {
+      "xs": 4,
+      "sm": 8,
+      "md": 12,
+      "lg": 16,
+      "xl": 24,
+      "xxl": 32
+    },
+    "typography": {
+      "heading": "600 1.5rem/1.2 Inter, sans-serif",
+      "body": "400 1rem/1.5 Inter, sans-serif",
+      "label": "600 0.75rem/1.2 Inter, sans-serif"
+    },
+    "motion": {
+      "transition": "180ms ease-in-out",
+      "emphasis": "240ms ease-in-out"
+    },
+    "components": {
+      "AnnouncementList": "default",
+      "HomeworkPanel": "emphasis",
+      "WeatherTile": "compact",
+      "CalendarGrid": "default"
+    }
+  },
+  "metadata": {
+    "source": "otto-display-orchestrator",
+    "deterministic": true,
+    "strategy": "rule-priority-and-phase-override"
+  }
+}
