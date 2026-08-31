@@ -1,3 +1,5 @@
+import type { LayoutZoneId } from "./LayoutZone.js";
+
 export type DisplayObjectType =
   | "AnnouncementList"
   | "HomeworkPanel"
@@ -9,7 +11,7 @@ export type DisplayObjectType =
 export interface DisplayObject {
   id: string;
   type: DisplayObjectType;
-  zoneId: "TopBar" | "LeftColumn" | "RightColumn" | "Footer" | "FullscreenOverlay";
+  zoneId: LayoutZoneId;
   title?: string;
   source: string;
   priority: number;
@@ -22,7 +24,7 @@ export interface DisplayObject {
 export class DisplayObjectInstance implements DisplayObject {
   id: string;
   type: DisplayObjectType;
-  zoneId: "TopBar" | "LeftColumn" | "RightColumn" | "Footer" | "FullscreenOverlay";
+  zoneId: LayoutZoneId;
   title?: string;
   source: string;
   priority: number;

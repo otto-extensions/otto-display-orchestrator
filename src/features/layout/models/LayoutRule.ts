@@ -1,3 +1,6 @@
+import type { DisplayObjectType } from "./DisplayObject.js";
+import type { LayoutZoneId } from "./LayoutZone.js";
+
 export type LayoutRuleType = "time-based" | "role-based" | "phase-based" | "event-based";
 export type LayoutRuleScope = "global" | "role" | "phase" | "event" | "time";
 export type LayoutRuleOperator = "equals" | "in" | "gt" | "lt" | "contains";
@@ -15,19 +18,11 @@ export interface LayoutRule {
   scope: LayoutRuleScope;
   enabled: boolean;
   priority: number;
-  zoneId: "TopBar" | "LeftColumn" | "RightColumn" | "Footer" | "FullscreenOverlay";
+  zoneId: LayoutZoneId;
   objectType: DisplayObjectType;
   conditions: LayoutRuleCondition[];
   fallback?: string;
 }
-
-export type DisplayObjectType =
-  | "AnnouncementList"
-  | "HomeworkPanel"
-  | "WeatherTile"
-  | "CalendarGrid"
-  | "Clock"
-  | "StatusBadge";
 
 export class LayoutRuleDefinition implements LayoutRule {
   id: string;
@@ -36,7 +31,7 @@ export class LayoutRuleDefinition implements LayoutRule {
   scope: LayoutRuleScope;
   enabled: boolean;
   priority: number;
-  zoneId: "TopBar" | "LeftColumn" | "RightColumn" | "Footer" | "FullscreenOverlay";
+  zoneId: LayoutZoneId;
   objectType: DisplayObjectType;
   conditions: LayoutRuleCondition[];
   fallback?: string;
